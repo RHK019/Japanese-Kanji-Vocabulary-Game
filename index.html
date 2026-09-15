@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Japanese Kanji Game</title>
+
+    <style>
+        :root {
+            --bg-color: #f7f9fa;
+            --text-color: #3c3c3c;
+            --primary-color: #58cc02;
+            --primary-shadow: #46a302;
+            --secondary-color: #1cb0f6;
+            --secondary-shadow: #1899d6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 2px solid #e5e5e5;
+            border-radius: 24px;
+            padding: 40px 25px;
+            box-shadow: 0 6px 0 #e5e5e5;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            margin: 10px 0 30px;
+            font-size: 1rem;
+            color: #777;
+        }
+
+        .game-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 14px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        .n4-btn {
+            background: var(--primary-color);
+            box-shadow: 0 4px 0 var(--primary-shadow);
+        }
+
+        .n3-btn {
+            background: var(--secondary-color);
+            box-shadow: 0 4px 0 var(--secondary-shadow);
+        }
+
+        .game-btn:hover {
+            opacity: 0.9;
+        }
+
+        .game-btn:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            .logo {
+                font-size: 3rem;
+            }
+
+            h1 {
+                font-size: 1.7rem;
+            }
+
+            .game-btn {
+                font-size: 1.1rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <div class="logo">漢字</div>
+
+            <h1>Japanese Kanji Game</h1>
+
+            <p class="subtitle">
+                Choose your level and start practicing!
+            </p>
+
+            <a
+                href="https://rhk019.github.io/N4-Kanji-Match-game/"
+                class="game-btn n4-btn">
+                N4 Kanji Game
+            </a>
+
+            <a
+                href="https://rhk019.github.io/N3-Kanji-Match-game/"
+                class="game-btn n3-btn">
+                N3 Kanji Game
+            </a>
+
+            <div class="footer">
+                Developed by: Rakib Hasan Khan
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
