@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +9,63 @@
     <title>Japanese Kanji Game</title>
 
     <style>
+
+        /* =========================
+           ROOT
+        ========================= */
+
         :root {
             --bg-color: #f7f9fa;
             --text-color: #3c3c3c;
+
             --primary-color: #58cc02;
             --primary-shadow: #46a302;
+
             --secondary-color: #1cb0f6;
             --secondary-shadow: #1899d6;
+
             --n5-color: #ff9600;
             --n5-shadow: #cc7600;
+
             --card-bg: #ffffff;
 
-            /* Navbar colors */
             --nav-start: #171a3a;
             --nav-end: #29235c;
         }
+
+
+        /* =========================
+           RESET
+        ========================= */
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
-    padding: 20px;
 
-    position: relative;
-    overflow: hidden;
-}
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: var(--bg-color);
+            color: var(--text-color);
+
+            font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
+
+            padding: 20px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
 
         /* =========================
            NAVBAR
@@ -48,8 +73,10 @@
 
         .navbar {
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
             height: 70px;
 
@@ -67,10 +94,13 @@
 
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
-            z-index: 1000;
+            z-index: 2000;
         }
 
-        /* Logo */
+
+        /* =========================
+           RHK LOGO
+        ========================= */
 
         .nav-logo {
             display: flex;
@@ -80,9 +110,8 @@
             color: white;
             text-decoration: none;
 
-            font-size: 1.45rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            letter-spacing: 1px;
         }
 
         .logo-symbol {
@@ -93,15 +122,21 @@
             align-items: center;
             justify-content: center;
 
-            border-radius: 12px;
+            border-radius: 10px;
 
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: white;
+            color: #29235c;
 
-            font-size: 1.05rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+
+            box-shadow: 0 3px 0 rgba(255,255,255,0.2);
         }
 
-        /* Menu button */
+
+        /* =========================
+           MENU BUTTON
+        ========================= */
 
         .menu-wrapper {
             position: relative;
@@ -112,168 +147,37 @@
             height: 45px;
 
             border: none;
-            border-radius: 12px;
-
-            background: rgba(255, 255, 255, 0.10);
+            background: transparent;
 
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            gap: 5px;
+            align-items: center;
+
+            gap: 6px;
 
             cursor: pointer;
 
-            transition: 0.25s ease;
-        }
-
-        .menu-btn:hover {
-            background: rgba(255, 255, 255, 0.18);
-            transform: translateY(-1px);
+            position: relative;
+            z-index: 2001;
         }
 
         .menu-btn span {
-            width: 22px;
-            height: 2px;
+            display: block;
+
+            width: 28px;
+            height: 3px;
 
             background: white;
-            border-radius: 10px;
 
-            transition: 0.25s ease;
+            border-radius: 5px;
+
+            transition: 0.3s ease;
         }
-
-/* =========================
-   SLIDE MENU
-========================= */
-
-/* Dark transparent background over the page */
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.30);
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: 0.3s ease;
-
-    z-index: 1998;
-}
-
-.menu-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* Right side menu */
-
-.menu-dropdown {
-    position: fixed;
-
-    top: 0;
-    right: 0;
-
-    width: 50vw;
-    height: 100vh;
-
-    padding: 100px 35px 40px;
-
-    background: rgba(0, 0, 0, 0.70);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    border-left: 1px solid rgba(255, 255, 255, 0.12);
-
-    box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25);
-
-    transform: translateX(100%);
-
-    transition: transform 0.35s ease;
-
-    z-index: 1999;
-
-    opacity: 1;
-    visibility: visible;
-}
-
-.menu-dropdown.show {
-    transform: translateX(0);
-}
-
-
-/* Menu links */
-
-.menu-dropdown a {
-    display: flex;
-    align-items: center;
-
-    padding: 15px 18px;
-    margin-bottom: 10px;
-
-    color: white;
-    text-decoration: none;
-
-    font-size: 1.05rem;
-    font-weight: 600;
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, 0.06);
-
-    transition: 0.2s ease;
-}
-
-.menu-dropdown a:hover {
-    background: rgba(255, 255, 255, 0.14);
-
-    transform: translateX(-4px);
-}
-
-.menu-icon {
-    width: 32px;
-
-    font-size: 1.1rem;
-
-    color: white;
-}
-
-
-/* Close button */
-
-.menu-btn.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.menu-btn.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .menu-dropdown {
-        width: 50vw;
-        padding: 90px 20px 30px;
-    }
-
-    .menu-dropdown a {
-        padding: 13px 12px;
-        font-size: 0.95rem;
-    }
-}
 
 
         /* =========================
-           MAIN CONTENT
+           MAIN CONTAINER
         ========================= */
 
         .container {
@@ -285,12 +189,21 @@
             margin: 0 auto;
 
             padding: 110px 20px 30px;
+
+            position: relative;
+            z-index: 10;
         }
+
+
+        /* =========================
+           CARD
+        ========================= */
 
         .card {
             background: var(--card-bg);
 
             border: 2px solid #e5e5e5;
+
             border-radius: 24px;
 
             padding: 40px 25px;
@@ -298,24 +211,46 @@
             box-shadow: 0 6px 0 #e5e5e5;
         }
 
+
+        /* =========================
+           MAIN LOGO
+        ========================= */
+
         .logo {
             font-size: 3.5rem;
             margin-bottom: 10px;
         }
 
+
+        /* =========================
+           TITLE
+        ========================= */
+
         h1 {
             margin: 0;
 
             font-size: 2rem;
+
             font-weight: 800;
         }
+
+
+        /* =========================
+           SUBTITLE
+        ========================= */
 
         .subtitle {
             margin: 10px 0 30px;
 
             font-size: 1rem;
+
             color: #777;
         }
+
+
+        /* =========================
+           GAME BUTTON
+        ========================= */
 
         .game-btn {
             display: block;
@@ -323,14 +258,17 @@
             width: 100%;
 
             padding: 16px 20px;
+
             margin: 16px 0;
 
             border-radius: 14px;
 
             color: white;
+
             text-decoration: none;
 
             font-size: 1.2rem;
+
             font-weight: bold;
 
             transition:
@@ -338,35 +276,230 @@
                 opacity 0.2s;
         }
 
+
+        /* N5 */
+
         .n5-btn {
-           background: var(--n5-color);
-           box-shadow: 0 4px 0 var(--n5-shadow);
+            background: var(--n5-color);
+
+            box-shadow:
+                0 4px 0 var(--n5-shadow);
         }
-        
+
+
+        /* N4 */
+
         .n4-btn {
             background: var(--primary-color);
-            box-shadow: 0 4px 0 var(--primary-shadow);
+
+            box-shadow:
+                0 4px 0 var(--primary-shadow);
         }
+
+
+        /* N3 */
 
         .n3-btn {
             background: var(--secondary-color);
-            box-shadow: 0 4px 0 var(--secondary-shadow);
+
+            box-shadow:
+                0 4px 0 var(--secondary-shadow);
         }
+
+
+        /* BUTTON HOVER */
 
         .game-btn:hover {
             opacity: 0.9;
         }
 
+
+        /* BUTTON CLICK */
+
         .game-btn:active {
             transform: translateY(3px);
+
             box-shadow: none;
         }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         .footer {
             margin-top: 25px;
 
             font-size: 0.85rem;
+
             color: #888;
+        }
+
+
+        /* =========================
+           KANJI BACKGROUND
+        ========================= */
+
+        .kanji-background {
+            position: fixed;
+
+            inset: 0;
+
+            overflow: hidden;
+
+            z-index: 0;
+
+            pointer-events: none;
+        }
+
+        .bg-kanji {
+            position: absolute;
+
+            font-size: clamp(2rem, 4vw, 4rem);
+
+            font-weight: 800;
+
+            color: rgba(88, 204, 2, 0.08);
+
+            user-select: none;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================
+           MENU OVERLAY
+        ========================= */
+
+        .menu-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.30);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s ease;
+
+            z-index: 1998;
+        }
+
+        .menu-overlay.show {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =========================
+           SLIDE MENU
+        ========================= */
+
+        .menu-dropdown {
+            position: fixed;
+
+            top: 0;
+            right: 0;
+
+            width: 50vw;
+            height: 100vh;
+
+            padding: 100px 35px 40px;
+
+            background: rgba(0, 0, 0, 0.70);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border-left:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                -10px 0 35px rgba(0, 0, 0, 0.25);
+
+            transform: translateX(100%);
+
+            transition:
+                transform 0.35s ease;
+
+            z-index: 1999;
+
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+        .menu-dropdown.show {
+            transform: translateX(0);
+        }
+
+
+        /* =========================
+           MENU LINKS
+        ========================= */
+
+        .menu-dropdown a {
+            display: flex;
+
+            align-items: center;
+
+            padding: 15px 18px;
+
+            margin-bottom: 10px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 1.05rem;
+
+            font-weight: 600;
+
+            border-radius: 12px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            transition: 0.2s ease;
+        }
+
+        .menu-dropdown a:hover {
+            background:
+                rgba(255, 255, 255, 0.14);
+
+            transform:
+                translateX(-4px);
+        }
+
+        .menu-icon {
+            width: 32px;
+
+            font-size: 1.1rem;
+
+            color: white;
+        }
+
+
+        /* =========================
+           HAMBURGER → X
+        ========================= */
+
+        .menu-btn.active span:nth-child(1) {
+            transform:
+                translateY(9px)
+                rotate(45deg);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform:
+                translateY(-9px)
+                rotate(-45deg);
         }
 
 
@@ -374,87 +507,61 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
 
             .navbar {
-                height: 64px;
-                padding: 0 18px;
-            }
-
-            .nav-logo {
-                font-size: 1.25rem;
-            }
-
-            .logo-symbol {
-                width: 35px;
-                height: 35px;
-                border-radius: 10px;
-            }
-
-            .menu-btn {
-                width: 42px;
-                height: 42px;
+                padding: 0 20px;
             }
 
             .menu-dropdown {
-                top: 54px;
-                right: -5px;
-                width: 195px;
+                width: 50vw;
+
+                padding:
+                    90px 20px 30px;
             }
 
-            .container {
-                padding-top: 95px;
-            }
+            .menu-dropdown a {
+                padding:
+                    13px 12px;
 
-            .card {
-                padding: 30px 20px;
-            }
-
-            .logo {
-                font-size: 3rem;
-            }
-
-            h1 {
-                font-size: 1.7rem;
-            }
-
-            .game-btn {
-                font-size: 1.1rem;
-                padding: 15px;
+                font-size:
+                    0.95rem;
             }
         }
 
-        /* =========================
-       N5 KANJI BACKGROUND
-    ========================= */
 
-    .kanji-background {
-        position: fixed;
-        inset: 0;
-        overflow: hidden;
-        z-index: 0;
-        pointer-events: none;
-    }
+        @media (max-width: 480px) {
 
-    .bg-kanji {
-        position: absolute;
-        font-size: clamp(2rem, 4vw, 4rem);
-        font-weight: 800;
-        color: rgba(88, 204, 2, 0.08);
-        user-select: none;
-        white-space: nowrap;
-    }
+            .card {
+                padding:
+                    30px 20px;
+            }
 
-    .container {
-        position: relative;
-        z-index: 10;
-    }
-        
+            .logo {
+                font-size:
+                    3rem;
+            }
+
+            h1 {
+                font-size:
+                    1.7rem;
+            }
+
+            .game-btn {
+                font-size:
+                    1.1rem;
+
+                padding:
+                    15px;
+            }
+        }
+
     </style>
 </head>
 
 
 <body>
+
 
     <!-- =========================
          NAVBAR
@@ -462,21 +569,27 @@
 
     <nav class="navbar">
 
-        <!-- Left Logo -->
         <a href="#" class="nav-logo">
-            <div class="logo-symbol">R</div>
-            <span>RHK</span>
+
+            <div class="logo-symbol">
+                R
+            </div>
+
+            <span>
+                RHK
+            </span>
+
         </a>
 
 
-        <!-- Right Menu -->
         <div class="menu-wrapper">
 
             <button
                 class="menu-btn"
                 id="menuButton"
                 aria-label="Open menu"
-                aria-expanded="false">
+                aria-expanded="false"
+            >
 
                 <span></span>
                 <span></span>
@@ -485,44 +598,71 @@
             </button>
 
 
-            <!-- 5 Menu Options -->
+            <!-- =========================
+                 SLIDE MENU
+            ========================= -->
 
-            <div class="menu-dropdown" id="menuDropdown">
+            <div
+                class="menu-dropdown"
+                id="menuDropdown"
+            >
 
-    <a href="#">
-        <span class="menu-icon">⌂</span>Home
-    </a>
+                <a href="#">
+                    <span class="menu-icon">⌂</span>
+                    Home
+                </a>
 
-    <a href="#">
-        <span class="menu-icon">五</span>N5 Course
-    </a>
+                <a href="#">
+                    <span class="menu-icon">五</span>
+                    N5 Course
+                </a>
 
-    <a href="#">
-        <span class="menu-icon">四</span>N4 Course
-    </a>
+                <a href="#">
+                    <span class="menu-icon">四</span>
+                    N4 Course
+                </a>
 
-    <a href="#">
-        <span class="menu-icon">三</span>N3 Course
-    </a>
+                <a href="#">
+                    <span class="menu-icon">三</span>
+                    N3 Course
+                </a>
 
-    <a href="#">
-        <span class="menu-icon">✦</span>About
-    </a>
+                <a href="#">
+                    <span class="menu-icon">✦</span>
+                    About
+                </a>
 
-    <a href="#">
-        <span class="menu-icon">✉</span>Contact
-    </a>
+                <a href="#">
+                    <span class="menu-icon">✉</span>
+                    Contact
+                </a>
 
-</div>
+            </div>
 
         </div>
 
     </nav>
 
-<div class="kanji-background" id="kanjiBackground"></div>
-    
-<!-- Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- =========================
+         KANJI BACKGROUND
+    ========================= -->
+
+    <div
+        class="kanji-background"
+        id="kanjiBackground"
+    ></div>
+
+
+    <!-- =========================
+         MENU OVERLAY
+    ========================= -->
+
+    <div
+        class="menu-overlay"
+        id="menuOverlay"
+    ></div>
+
 
     <!-- =========================
          MAIN CONTENT
@@ -532,36 +672,53 @@
 
         <div class="card">
 
-            <div class="logo">漢字</div>
+            <div class="logo">
+                漢字
+            </div>
 
-            <h1>Japanese Kanji Game</h1>
+
+            <h1>
+                Japanese Kanji Game
+            </h1>
+
 
             <p class="subtitle">
                 Choose your level and start practicing!
             </p>
 
 
+            <!-- N5 -->
+
             <a
-    href="#"
-    class="game-btn n5-btn">
-    N5 Kanji Game
-</a>
+                href="#"
+                class="game-btn n5-btn"
+            >
+                N5 Kanji Game
+            </a>
 
-<a
-    href="https://rhk019.github.io/N4-Kanji-Match-game/"
-    class="game-btn n4-btn">
-    N4 Kanji Game
-</a>
 
-<a
-    href="https://rhk019.github.io/N3-Kanji-Match-game/"
-    class="game-btn n3-btn">
-    N3 Kanji Game
-</a>
+            <!-- N4 -->
+
+            <a
+                href="https://rhk019.github.io/N4-Kanji-Match-game/"
+                class="game-btn n4-btn"
+            >
+                N4 Kanji Game
+            </a>
+
+
+            <!-- N3 -->
+
+            <a
+                href="https://rhk019.github.io/N3-Kanji-Match-game/"
+                class="game-btn n3-btn"
+            >
+                N3 Kanji Game
+            </a>
 
 
             <div class="footer">
-                Developed by: Rakib Hassan Khan
+                Developed by: Rakib Hasan Khan
             </div>
 
         </div>
@@ -573,84 +730,133 @@
          MENU JAVASCRIPT
     ========================= -->
 
-<script>
+    <script>
 
-    const menuButton = document.getElementById("menuButton");
-    const menuDropdown = document.getElementById("menuDropdown");
-    const menuOverlay = document.getElementById("menuOverlay");
+        const menuButton =
+            document.getElementById("menuButton");
 
+        const menuDropdown =
+            document.getElementById("menuDropdown");
 
-    /* Open / Close Menu */
-
-    menuButton.addEventListener("click", function () {
-
-        menuDropdown.classList.toggle("show");
-        menuOverlay.classList.toggle("show");
-        menuButton.classList.toggle("active");
-
-    });
+        const menuOverlay =
+            document.getElementById("menuOverlay");
 
 
-    /* Click outside menu */
+        menuButton.addEventListener(
+            "click",
+            function () {
 
-    menuOverlay.addEventListener("click", function () {
+                menuDropdown.classList.toggle("show");
 
-        menuDropdown.classList.remove("show");
-        menuOverlay.classList.remove("show");
-        menuButton.classList.remove("active");
+                menuOverlay.classList.toggle("show");
 
-    });
+                menuButton.classList.toggle("active");
+
+            }
+        );
 
 
-    /* Close menu after selecting an option */
+        menuOverlay.addEventListener(
+            "click",
+            function () {
 
-    const menuLinks = menuDropdown.querySelectorAll("a");
+                menuDropdown.classList.remove("show");
 
-    menuLinks.forEach(function (link) {
+                menuOverlay.classList.remove("show");
 
-        link.addEventListener("click", function () {
+                menuButton.classList.remove("active");
 
-            menuDropdown.classList.remove("show");
-            menuOverlay.classList.remove("show");
-            menuButton.classList.remove("active");
+            }
+        );
 
-        });
 
-    });
+        const menuLinks =
+            menuDropdown.querySelectorAll("a");
 
-</script>
 
-    <!-- তোমার আগের JavaScript থাকলে এখানে থাকবে -->
+        menuLinks.forEach(
+            function (link) {
 
+                link.addEventListener(
+                    "click",
+                    function () {
+
+                        menuDropdown.classList.remove("show");
+
+                        menuOverlay.classList.remove("show");
+
+                        menuButton.classList.remove("active");
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =========================
+         N5 KANJI BACKGROUND JAVASCRIPT
+    ========================= -->
 
     <script>
 
         const n5Kanji = [
+
             "人", "日", "月", "火", "水",
             "木", "金", "土", "山", "川",
+
             "田", "口", "目", "耳", "手",
             "足", "力", "女", "男", "子",
+
             "父", "母", "友", "先", "生",
             "学", "校", "年", "時", "分",
+
             "上", "下", "中", "外", "右",
             "左", "前", "後", "東", "西",
+
             "南", "北", "大", "小", "高",
             "安", "新", "古", "長", "白",
+
             "赤", "青", "円", "天", "気",
             "雨", "電", "車", "駅", "国"
+
         ];
 
+
         const background =
-            document.getElementById("kanjiBackground");
+            document.getElementById(
+                "kanjiBackground"
+            );
 
-        for (let i = 0; i < 55; i++) {
 
-            const kanji = document.createElement("span");
+        for (
+            let i = 0;
+            i < 55;
+            i++
+        ) {
 
-            kanji.className = "bg-kanji";
+            const kanji =
+                document.createElement("span");
+
+
+            kanji.className =
+                "bg-kanji";
+
+
+            /* Random Kanji */
 
             kanji.textContent =
-                n5Kanji[Math.floor(Math.random() * n5Kanji.length)];
+                n5Kanji[
+                    Math.floor(
+                        Math.random()
+                        * n5Kanji.length
+                    )
+                ];
+
+
+            /* Random Position */
 
             kanji.style.left =
                 Math.random() * 100 + "%";
@@ -658,28 +864,47 @@
             kanji.style.top =
                 Math.random() * 100 + "%";
 
+
+            /* Random Size */
+
             const size =
-                2.5 + Math.random() * 2.5;
+                2.5 +
+                Math.random() * 2.5;
 
             kanji.style.fontSize =
                 size + "rem";
 
+
+            /* Random Rotation */
+
             const rotation =
-                -35 + Math.random() * 70;
+                -35 +
+                Math.random() * 70;
 
             kanji.style.transform =
                 `rotate(${rotation}deg)`;
 
+
+            /* Random Opacity */
+
             const opacity =
-                0.04 + Math.random() * 0.06;
+                0.04 +
+                Math.random() * 0.06;
 
             kanji.style.color =
                 `rgba(88, 204, 2, ${opacity})`;
 
-            background.appendChild(kanji);
+
+            background.appendChild(
+                kanji
+            );
+
         }
 
     </script>
 
+
 </body>
+
 </html>
+```
