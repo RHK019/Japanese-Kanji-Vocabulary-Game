@@ -29,12 +29,19 @@
         }
 
         body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
-        }
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Nunito', 'Segoe UI', Tahoma, sans-serif;
+    padding: 20px;
+
+    position: relative;
+    overflow: hidden;
+}
 
         /* =========================
            NAVBAR
@@ -417,6 +424,33 @@
                 padding: 15px;
             }
         }
+
+        /* =========================
+       N5 KANJI BACKGROUND
+    ========================= */
+
+    .kanji-background {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .bg-kanji {
+        position: absolute;
+        font-size: clamp(2rem, 4vw, 4rem);
+        font-weight: 800;
+        color: rgba(88, 204, 2, 0.08);
+        user-select: none;
+        white-space: nowrap;
+    }
+
+    .container {
+        position: relative;
+        z-index: 10;
+    }
+        
     </style>
 </head>
 
@@ -486,6 +520,8 @@
 
     </nav>
 
+<div class="kanji-background" id="kanjiBackground"></div>
+    
 <!-- Menu Overlay -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
@@ -584,6 +620,67 @@
     });
 
 </script>
+
+    <!-- তোমার আগের JavaScript থাকলে এখানে থাকবে -->
+
+
+    <script>
+
+        const n5Kanji = [
+            "人", "日", "月", "火", "水",
+            "木", "金", "土", "山", "川",
+            "田", "口", "目", "耳", "手",
+            "足", "力", "女", "男", "子",
+            "父", "母", "友", "先", "生",
+            "学", "校", "年", "時", "分",
+            "上", "下", "中", "外", "右",
+            "左", "前", "後", "東", "西",
+            "南", "北", "大", "小", "高",
+            "安", "新", "古", "長", "白",
+            "赤", "青", "円", "天", "気",
+            "雨", "電", "車", "駅", "国"
+        ];
+
+        const background =
+            document.getElementById("kanjiBackground");
+
+        for (let i = 0; i < 55; i++) {
+
+            const kanji = document.createElement("span");
+
+            kanji.className = "bg-kanji";
+
+            kanji.textContent =
+                n5Kanji[Math.floor(Math.random() * n5Kanji.length)];
+
+            kanji.style.left =
+                Math.random() * 100 + "%";
+
+            kanji.style.top =
+                Math.random() * 100 + "%";
+
+            const size =
+                2.5 + Math.random() * 2.5;
+
+            kanji.style.fontSize =
+                size + "rem";
+
+            const rotation =
+                -35 + Math.random() * 70;
+
+            kanji.style.transform =
+                `rotate(${rotation}deg)`;
+
+            const opacity =
+                0.04 + Math.random() * 0.06;
+
+            kanji.style.color =
+                `rgba(88, 204, 2, ${opacity})`;
+
+            background.appendChild(kanji);
+        }
+
+    </script>
 
 </body>
 </html>
